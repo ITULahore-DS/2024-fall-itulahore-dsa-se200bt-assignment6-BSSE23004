@@ -31,8 +31,6 @@ public:
     }
 };
 
-//---------------------------Class List-------------------------------------------------
-
 class Stack
 {
     Node *top;
@@ -84,7 +82,7 @@ public:
         // checking the list
         if (top == nullptr)
         {
-            cerr << "List Not Made" << endl;
+            cerr << "Stack is Empty!!" << endl;
             return;
         }
         Node *temp = top;
@@ -101,7 +99,7 @@ public:
     {
         if (top == nullptr)
         {
-            cerr << "List is not made!!!" << endl;
+            cerr << "Stack is Empty!!!" << endl;
             return;
         }
         Node *temp = top;
@@ -178,35 +176,27 @@ public:
         }
         else
         {
-            temp->setNext(top);
-            top = temp;
+            Node *it = top;
+            while (it->getNext() != nullptr)
+            {
+                it = it->getNext();
+            }
+            it->setNext(temp);
         }
         ++count;
     }
 
     void dequeue()
     {
-        // checking the list
         if (top == nullptr)
         {
-            cerr << "Queue is Empty" << endl;
+            cerr << "Queues is Empty!!" << endl;
             return;
         }
         Node *temp = top;
-        if (temp->getNext() == nullptr)
-        {
-            delete temp;
-            top = nullptr;
-            --count;
-            return;
-        }
-        // Traverrsing to the second last node
-        while (temp->getNext()->getNext() != nullptr)
-        {
-            temp = temp->getNext();
-        }
-        delete temp->getNext();
+        top = top->getNext();
         temp->setNext(nullptr);
+        delete temp;
         --count;
     }
 
@@ -218,7 +208,7 @@ public:
     {
         if (top == nullptr)
         {
-            cerr << "List is not made!!!" << endl;
+            cerr << "Queue is Empty!!!" << endl;
             return;
         }
         Node *temp = top;
