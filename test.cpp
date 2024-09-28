@@ -1,18 +1,20 @@
-#define CATCH_CONFIG_MAIN  // This tells Catch to provide a main() - only do this in one cpp file
+#define CATCH_CONFIG_MAIN // This tells Catch to provide a main() - only do this in one cpp file
 #include "catch.hpp"
 #include "functions.h"
 #include <iostream>
 #include <sstream>
 using namespace std;
 
-TEST_CASE("Test if stack is initially empty", "[isEmpty]") {
+TEST_CASE("Test if stack is initially empty", "[isEmpty]")
+{
     Stack myStack;
 
     // Check if the stack is empty on initialization
     REQUIRE(myStack.isEmpty() == true);
 }
 
-TEST_CASE("Push function test", "[push]") {
+TEST_CASE("Push function test", "[push]")
+{
     Stack myStack;
 
     // Push elements onto the stack
@@ -24,10 +26,11 @@ TEST_CASE("Push function test", "[push]") {
     REQUIRE(myStack.isEmpty() == false);
 
     // Check the top data
-    REQUIRE(myStack.peek() == 30);  // Top should be 30
+    REQUIRE(myStack.peek() == 30); // Top should be 30
 }
 
-TEST_CASE("Pop function test", "[pop]") {
+TEST_CASE("Pop function test", "[pop]")
+{
     Stack myStack;
 
     // Push elements onto the stack
@@ -37,20 +40,21 @@ TEST_CASE("Pop function test", "[pop]") {
 
     // Pop the top element
     myStack.pop();
-    REQUIRE(myStack.peek() == 20);  // Top should now be 20
-    REQUIRE(myStack.size() == 2);   // Size should be 2
+    REQUIRE(myStack.peek() == 20); // Top should now be 20
+    REQUIRE(myStack.size() == 2);  // Size should be 2
 
     // Pop the next element
     myStack.pop();
-    REQUIRE(myStack.peek() == 10);  // Top should now be 10
-    REQUIRE(myStack.size() == 1);   // Size should be 1
+    REQUIRE(myStack.peek() == 10); // Top should now be 10
+    REQUIRE(myStack.size() == 1);  // Size should be 1
 
     // Pop the last element
     myStack.pop();
-    REQUIRE(myStack.isEmpty() == true);  // Stack should now be empty
+    REQUIRE(myStack.isEmpty() == true); // Stack should now be empty
 }
 
-TEST_CASE("Peek function test", "[peek]") {
+TEST_CASE("Peek function test", "[peek]")
+{
     Stack myStack;
 
     // Push elements onto the stack
@@ -61,14 +65,15 @@ TEST_CASE("Peek function test", "[peek]") {
 
     // Push another element
     myStack.push(20);
-    REQUIRE(myStack.peek() == 20);  // Top should now be 20
+    REQUIRE(myStack.peek() == 20); // Top should now be 20
 
     // Pop the top element
     myStack.pop();
-    REQUIRE(myStack.peek() == 10);  // Top should now be 10
+    REQUIRE(myStack.peek() == 10); // Top should now be 10
 }
 
-TEST_CASE("Size function test", "[size]") {
+TEST_CASE("Size function test", "[size]")
+{
     Stack myStack;
 
     // Initially size should be 0
@@ -93,7 +98,8 @@ TEST_CASE("Size function test", "[size]") {
     REQUIRE(myStack.size() == 0);
 }
 
-TEST_CASE("Clear function test", "[clear]") {
+TEST_CASE("Clear function test", "[clear]")
+{
     Stack myStack;
 
     // Push elements onto the stack
@@ -109,7 +115,8 @@ TEST_CASE("Clear function test", "[clear]") {
     REQUIRE(myStack.size() == 0);
 }
 
-TEST_CASE("Pop from empty stack test", "[pop]") {
+TEST_CASE("Pop from empty stack test", "[pop]")
+{
     Stack myStack;
 
     // Attempt to pop from an empty stack
@@ -119,7 +126,8 @@ TEST_CASE("Pop from empty stack test", "[pop]") {
     REQUIRE(myStack.isEmpty() == true);
 }
 
-TEST_CASE("Peek from empty stack test", "[peek]") {
+TEST_CASE("Peek from empty stack test", "[peek]")
+{
     Stack myStack;
 
     // Attempt to peek at an empty stack
@@ -128,5 +136,3 @@ TEST_CASE("Peek from empty stack test", "[peek]") {
     // Since peek returns -1 when the stack is empty
     REQUIRE(topValue == -1);
 }
-
-
