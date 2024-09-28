@@ -46,10 +46,11 @@ public:
     }
     ~Stack()
     {
-        Node *temp = top;
-        while (temp != nullptr)
+        Node *temp;
+        while (top != nullptr)
         {
-            temp = temp->getNext();
+            temp = top;
+            top = top->getNext();
             delete temp;
         }
     }
@@ -86,10 +87,9 @@ public:
             cerr << "List Not Made" << endl;
             return;
         }
-        Node *temp = top->getNext();
-        top->setNext(nullptr);
-        delete top;
-        top = temp;
+        Node *temp = top;
+        top = top->getNext();
+        delete temp;
         --count;
     }
 
@@ -127,6 +127,13 @@ public:
 
     void clear()
     {
+        Node *temp;
+        while (top != nullptr)
+        {
+            temp = top;
+            top = top->getNext();
+            delete temp;
+        }
         count = 0;
     }
 };
@@ -144,10 +151,11 @@ public:
     }
     ~Queue()
     {
-        Node *temp = top;
-        while (temp != nullptr)
+        Node *temp;
+        while (top != nullptr)
         {
-            temp = temp->getNext();
+            temp = top;
+            top = top->getNext();
             delete temp;
         }
     }
@@ -181,13 +189,24 @@ public:
         // checking the list
         if (top == nullptr)
         {
-            cerr << "List Not Made" << endl;
+            cerr << "Queue is Empty" << endl;
             return;
         }
-        Node *temp = top->getNext();
-        top->setNext(nullptr);
-        delete top;
-        top = temp;
+        Node *temp = top;
+        if (temp->getNext() == nullptr)
+        {
+            delete temp;
+            top = nullptr;
+            --count;
+            return;
+        }
+        // Traverrsing to the second last node
+        while (temp->getNext()->getNext() != nullptr)
+        {
+            temp = temp->getNext();
+        }
+        delete temp->getNext();
+        temp->setNext(nullptr);
         --count;
     }
 
@@ -213,7 +232,7 @@ public:
     {
         if (isEmpty() || top == nullptr)
         {
-            cout << "Stack is Empty!!" << endl;
+            cout << "Queue is Empty!!" << endl;
             return -1;
         }
         return top->getData();
@@ -225,6 +244,13 @@ public:
 
     void clear()
     {
+        Node *temp;
+        while (top != nullptr)
+        {
+            temp = top;
+            top = top->getNext();
+            delete temp;
+        }
         count = 0;
     }
 };
